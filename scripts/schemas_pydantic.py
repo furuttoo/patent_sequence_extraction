@@ -551,6 +551,21 @@ class Activity(BaseModel):
             "range, inequality, approximation, or uncertainty."
         )
     )
+    value_numeric: Optional[float] = Field(
+        default=None,
+        description=(
+            "Machine-readable number parsed from value: the magnitude without the unit, "
+            "the percent sign, or the inequality. 85% -> 85.0; <0.05 nM -> 0.05; "
+            "1.2E-09 -> 1.2e-09. None when value is absent or has no parseable number."
+        )
+    )
+    unit: Optional[str] = Field(
+        default=None,
+        description=(
+            "Unit of value_numeric: '%' for the percentage metrics, a concentration unit "
+            "(nM, uM, pM, ...) for IC50/EC50, or empty when the source states none."
+        )
+    )
     assay_type: Optional[str] = Field(
         default=None,
         description=(
@@ -701,6 +716,34 @@ class Activity(BaseModel):
         self._normalization_warnings = warnings | self._normalization_warnings
         return self
 
+    @model_validator(mode="after")
+    def derive_numeric_value(self) -> Activity:
+        """Split value into a number and a unit; never raise, never guess a unit."""
+        import re as _re
+
+        value = self.value
+        if not value:
+            object.__setattr__(self, "value_numeric", None)
+            object.__setattr__(self, "unit", None)
+            return self
+        text = str(value).strip()
+        match = _re.search(r"[<>~≈≤≥]?\s*(-?\d+(?:[.,]\d+)?(?:[eE][-+]?\d+)?)\s*%?", text)
+        numeric = None
+        if match:
+            try:
+                numeric = float(match.group(1).replace(",", "."))
+            except ValueError:
+                numeric = None
+        unit = None
+        if self.metric in _PERCENT_METRICS or "%" in text:
+            unit = "%"
+        else:
+            unit_match = _re.search(r"(nM|µM|μM|uM|mM|pM|ng/mL|mg/kg|mg\s*/\s*kg)", text, _re.I)
+            unit = unit_match.group(1) if unit_match else None
+        object.__setattr__(self, "value_numeric", numeric)
+        object.__setattr__(self, "unit", unit)
+        return self
+
 
 # ---------------------------------------------------------------------------
 # SiRNARecord
@@ -808,15 +851,60 @@ class SiRNARecord(BaseModel):
     )
 
     # --- Modifications ---
-    modifications: list[Modification] = Field(
+    modifications: list[ModificationGroup] = Field(
         default_factory=list,
         description=(
-            "All chemical modifications on this strand, one Modification object per "
-            "type/position combination. "
-            "Decode using abbrev_map first, then modification_decoding_reference.md. "
-            "Flattened to a semicolon-delimited string in the CSV by to_csv_row()."
+            "Chemical modifications on this strand, grouped by canonical chemistry: "
+            "one group per canonical_name with the 1-based positions it covers and the "
+            "printed symbol at each position. canonical_name must be a name from "
+            "references/modification_vocabulary.json (resolve with abbrev_map first, then "
+            "modification_decoding_reference.md). Flattened to a ' * '-joined string in "
+            "the CSV by to_csv_row()."
         )
     )
+
+    @field_validator("modifications", mode="before")
+    @classmethod
+    def _group_legacy_modifications(cls, value):
+        """Accept the old per-position entries and fold them into groups.
+
+        Records written before the grouped format carry one dict per
+        type/position (type, position, strand, raw_symbol, flagged). They must
+        keep loading, so the grouping happens at validation time instead of a
+        separate migration step.
+        """
+        if value is None:
+            return []
+        if not isinstance(value, list):
+            return value
+        legacy = [e for e in value if isinstance(e, dict) and "canonical_name" not in e]
+        if not legacy:
+            return value
+        grouped: dict[str, dict] = {}
+        for entry in legacy:
+            name = str(entry.get("type") or "other")
+            position = entry.get("position")
+            positions = []
+            text = str(position or "").strip()
+            if text.isdigit():
+                positions = [int(text)]
+            else:
+                import re as _re
+                m = _re.fullmatch(r"(\d+)\s*-\s*(\d+)", text)
+                if m:
+                    a, b = int(m.group(1)), int(m.group(2))
+                    positions = list(range(min(a, b), max(a, b) + 1))
+            group = grouped.setdefault(name, {"canonical_name": name, "positions": [], "raw_names": [], "flagged": False})
+            for pos in positions:
+                if pos < 1:  # 0 means "no position stated"; the grouped form needs 1-based
+                    continue
+                group["positions"].append(pos)
+                group["raw_names"].append(str(entry.get("raw_symbol") or ""))
+            if entry.get("flagged"):
+                group["flagged"] = True
+        merged = [g for g in value if isinstance(g, dict) and "canonical_name" in g]
+        merged += [g for g in grouped.values() if g["positions"]]
+        return merged
 
     # --- Activity ---
     activity: Optional[Activity] = Field(
@@ -859,10 +947,8 @@ class SiRNARecord(BaseModel):
 
         if self.sequence_source == "ocr":
             self.needs_review = True
-        if any(m.flagged for m in self.modifications):
+        if any(g.flagged for g in self.modifications):
             self.needs_review = True
-        if any(m.strand != self.strand for m in self.modifications):
-            raise ValueError("every modification strand must match the parent record strand")
         if self.activity and self.activity._normalization_warnings:
             warnings.update(self.activity._normalization_warnings)
         if self.sequence and re.fullmatch(r"[ACGTUNacgtun]+", self.sequence):
@@ -883,13 +969,25 @@ class SiRNARecord(BaseModel):
     # ------------------------------------------------------------------
 
     def modifications_str(self) -> str:
+        """Canonical names joined by ' * ', in group order (dataset standard).
+
+        A strand with no chemistry renders '0' in both the names and the
+        positions column, matching the reference dataset's convention.
         """
-        Semicolon-delimited string for the CSV modifications column.
-        Format per entry: '<type>@<position>(<raw_symbol>)<flag>'
-        Example: "2'-OMe@1(u);2'-OMe@3(c);phosphorothioate@20;dT-overhang@21!"
-        '!' suffix means flagged=True on that modification.
+        if not self.modifications:
+            return "0"
+        return " * ".join(g.canonical_name for g in self.modifications)
+
+    def modification_positions_str(self) -> str:
+        """One comma-separated position list per group, joined by ' * '.
+
+        Groups stay in the same order as modifications_str so the two columns
+        read as aligned pairs: 'Phosphorothioate * 2-O-Methyl' against
+        '1,2 * 1,2,3,4'. A strand with no chemistry renders '0'.
         """
-        return ";".join(m.to_str() for m in self.modifications)
+        if not self.modifications:
+            return "0"
+        return " * ".join(",".join(str(p) for p in g.positions) for g in self.modifications)
 
     def to_csv_row(self) -> dict:
         """
@@ -908,8 +1006,11 @@ class SiRNARecord(BaseModel):
             "sequence":               self.sequence or "",
             "sequence_source":        self.sequence_source,
             "modifications":          self.modifications_str(),
+            "modification_positions": self.modification_positions_str(),
             "activity_metric":        act.metric or "",
             "activity_value":         act.value or "",
+            "activity_value_numeric": "" if act.value_numeric is None else repr(act.value_numeric),
+            "activity_unit":          act.unit or "",
             "activity_assay_type":    act.assay_type or "",
             "activity_concentration": act.concentration or "",
             "activity_cell_line":     act.cell_line or "",
@@ -928,10 +1029,7 @@ class SiRNARecord(BaseModel):
 # CSV column contract — derived from to_csv_row(), never declared separately
 # ---------------------------------------------------------------------------
 
-CSV_COLUMNS: list[str] = list(
-    SiRNARecord(sirna_id="_", strand="sense", sequence_source="ocr").to_csv_row().keys()
-)
-assert len(CSV_COLUMNS) == 23, f"Column count drifted: {len(CSV_COLUMNS)}"
+# The column contract is built after ModificationGroup is defined, further down.
 
 
 # ---------------------------------------------------------------------------
@@ -1020,8 +1118,8 @@ class ModificationGroup(BaseModel):
     canonical_name: str
     positions: tuple[int, ...]
     raw_names: tuple[str, ...] = ()
-    raw_symbols: tuple[str, ...] = ()
     flagged: bool = False
+    raw_symbols: tuple[str, ...] = ()
 
     @field_validator("canonical_name", mode="before")
     @classmethod
@@ -1069,6 +1167,16 @@ class ChemistryResolution(BaseModel):
     evidence: str
     confidence: Literal["high", "medium", "low"]
     needs_review: bool = False
+
+
+# ModificationGroup is declared after SiRNARecord, so the forward reference is
+# resolved here, before the CSV contract instantiates the model.
+SiRNARecord.model_rebuild()
+
+CSV_COLUMNS: list[str] = list(
+    SiRNARecord(sirna_id="_", strand="sense", sequence_source="ocr").to_csv_row().keys()
+)
+assert len(CSV_COLUMNS) == 26, f"Column count drifted: {len(CSV_COLUMNS)}"
 
 
 def serialize_modification_groups(groups: list[ModificationGroup]) -> tuple[str, str]:

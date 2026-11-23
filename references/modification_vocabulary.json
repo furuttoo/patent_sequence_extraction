@@ -1,34 +1,1805 @@
 {
-  "chemistries": [
-    {"canonical_name": "Phosphorothioate", "aliases": ["PS", "phosphorothioate", "phosphorothioate linkage", "s"]},
-    {"canonical_name": "2-O-Methyl", "aliases": ["2'-OMe", "2′-OMe", "2-O-Me", "2'-O-methyl", "2′-O-methyl"]},
-    {"canonical_name": "2-F", "aliases": ["2'-F", "2′-F", "2-fluoro", "2'-fluoro"]},
-    {"canonical_name": "2-O-(2-methoxyethyl)ribose", "aliases": ["2'-MOE", "2′-MOE", "2-O-(2-methoxyethyl)ribose", "2'-O-methoxyethyl"]},
-    {"canonical_name": "2-Deoxythymidine", "aliases": ["dT", "deoxythymidine", "2'-deoxythymidine"]},
-    {"canonical_name": "2-Deoxy", "aliases": ["DNA", "2'-deoxy", "deoxy"]},
-    {"canonical_name": "Glucosamine analogue", "aliases": ["glucosamine analog", "glucosamine analogue"]},
-    {"canonical_name": "Inverted abasic", "aliases": ["inverted abasic", "iAb", "Y34", "Y44"]},
-    {"canonical_name": "2,4-bridged nucleic acid", "aliases": ["2,4-BNA", "2',4'-BNA", "2′,4′-BNA"]},
-    {"canonical_name": "(S)-GNA", "aliases": ["S-GNA", "(S)-GNA", "GNA", "gn"]},
-    {"canonical_name": "5′-(E)-Vinylphosphonate", "aliases": ["E-VP", "(E)-Vinylphosphonate", "VP"]},
-    {"canonical_name": "Phosphate", "aliases": ["phosphate", "P"]},
-    {"canonical_name": "2′-O-hexadecyl adenosine", "aliases": ["Ahd"]},
-    {"canonical_name": "2′-O-hexadecyl cytidine", "aliases": ["Chd", "C-hd"]},
-    {"canonical_name": "Locked nucleic acid", "aliases": ["LNA", "locked nucleic acid"]},
-    {"canonical_name": "2′-O-hexadecyl uridine", "aliases": ["Uhd"]},
-    {"canonical_name": "N-acetyl-galactosamine", "aliases": ["GalNAc", "L96", "N-acetylgalactosamine"]},
-    {"canonical_name": "Inverted DeoxyThymidine", "aliases": ["inverted dT", "idT", "invdT"]},
-    {"canonical_name": "2′-O-hexadecyl guanosine", "aliases": ["Ghd"]},
-    {"canonical_name": "UnLocked nucleic acid", "aliases": ["UNA", "unlocked nucleic acid"]},
-    {"canonical_name": "Reverse deoxyadenosine", "aliases": ["reverse dA", "rDA"]},
-    {"canonical_name": "Cholesterol", "aliases": ["cholesterol", "Chol"]},
-    {"canonical_name": "Chol-TEG", "aliases": ["chol-TEG", "cholesterol-TEG"]},
-    {"canonical_name": "5-Methylcytosine", "aliases": ["5mC", "5-methylcytosine"]},
-    {"canonical_name": "2′-Methoxyethyl adenosine", "aliases": ["MOE-A"]},
-    {"canonical_name": "2′-Methoxyethyl guanosine", "aliases": ["MOE-G"]},
-    {"canonical_name": "2′-Methoxyethyl thymidine", "aliases": ["MOE-T"]},
-    {"canonical_name": "2′-Methoxyethyl cytidine", "aliases": ["MOE-C"]},
-    {"canonical_name": "2′-Methoxyethyl uridine", "aliases": ["MOE-U"]},
-    {"canonical_name": "(L)-α-threofuranosyl Uridine", "aliases": ["L-alpha-TNA-U", "TNA-U"]}
-  ]
+ "chemistries": [
+  {
+   "canonical_name": "(L)-α-threofuranosyl Uridine",
+   "aliases": [
+    "(L) α threofuranosyl Uridine",
+    "(L)-α-threofuranosyl-Uridine",
+    "(L)αthreofuranosylUridine",
+    "L-alpha-TNA-U",
+    "TNA-U"
+   ]
+  },
+  {
+   "canonical_name": "(S)-5-C-Aminopropyl-2-F",
+   "aliases": [
+    "(S) 5 C Aminopropyl 2 F",
+    "(S)5CAminopropyl2F"
+   ]
+  },
+  {
+   "canonical_name": "(S)-5-C-Aminopropyl-2-O-Methyl",
+   "aliases": [
+    "(S) 5 C Aminopropyl 2 O Methyl",
+    "(S)5CAminopropyl2OMethyl"
+   ]
+  },
+  {
+   "canonical_name": "(S)-GNA",
+   "aliases": [
+    "(S) GNA",
+    "(S)GNA",
+    "S-GNA",
+    "(S)-GNA",
+    "GNA",
+    "gn"
+   ]
+  },
+  {
+   "canonical_name": "1,3-Benzenedimethanol",
+   "aliases": [
+    "1,3 Benzenedimethanol",
+    "1,3Benzenedimethanol"
+   ]
+  },
+  {
+   "canonical_name": "1-Aminohexane",
+   "aliases": [
+    "1 Aminohexane",
+    "1Aminohexane"
+   ]
+  },
+  {
+   "canonical_name": "12-Hdodecyl 2,3,4,6-Tetra-O-Methyl-b-D-Glucopyranoside",
+   "aliases": [
+    "12 Hdodecyl 2,3,4,6 Tetra O Methyl b D Glucopyranoside",
+    "12-Hdodecyl-2,3,4,6-Tetra-O-Methyl-b-D-Glucopyranoside",
+    "12Hdodecyl2,3,4,6TetraOMethylbDGlucopyranoside"
+   ]
+  },
+  {
+   "canonical_name": "12-[(2,3,4,6-Tetra-O-methyl-b-D-glucopyranosyloxy)]dodecyl (2-cyanoethyl) (N,N-diisopropyl) phosphoramidite derivative",
+   "aliases": [
+    "12 [(2,3,4,6 Tetra O methyl b D glucopyranosyloxy)]dodecyl (2 cyanoethyl) (N,N diisopropyl) phosphoramidite derivative",
+    "12-[(2,3,4,6-Tetra-O-methyl-b-D-glucopyranosyloxy)]dodecyl-(2-cyanoethyl)-(N,N-diisopropyl)-phosphoramidite-derivative"
+   ]
+  },
+  {
+   "canonical_name": "2',4'-diOMe",
+   "aliases": [
+    "2',4' diOMe",
+    "2,4diOMe",
+    "2′,4′ diOMe",
+    "2′,4′-diOMe",
+    "2′,4′diOMe"
+   ]
+  },
+  {
+   "canonical_name": "2'-OH",
+   "aliases": [
+    "2' OH",
+    "2OH",
+    "2′ OH",
+    "2′-OH",
+    "2′OH"
+   ]
+  },
+  {
+   "canonical_name": "2,4-Carbocyclic-Ethylene-bridged nucleic acid-Locked nucleic acid",
+   "aliases": [
+    "2,4 Carbocyclic Ethylene bridged nucleic acid Locked nucleic acid",
+    "2,4-Carbocyclic-Ethylene-bridged-nucleic-acid-Locked-nucleic-acid"
+   ]
+  },
+  {
+   "canonical_name": "2,4-Carbocyclic-Locked nucleic acid-Locked nucleic acid",
+   "aliases": [
+    "2,4 Carbocyclic Locked nucleic acid Locked nucleic acid",
+    "2,4-Carbocyclic-Locked-nucleic-acid-Locked-nucleic-acid",
+    "2,4CarbocyclicLockednucleicacidLockednucleicacid"
+   ]
+  },
+  {
+   "canonical_name": "2,4-bridged nucleic acid",
+   "aliases": [
+    "2,4 bridged nucleic acid",
+    "2,4-bridged-nucleic-acid",
+    "2,4bridgednucleicacid",
+    "2,4-BNA",
+    "2',4'-BNA",
+    "2′,4′-BNA"
+   ]
+  },
+  {
+   "canonical_name": "2-Aminoethoxymethyl",
+   "aliases": [
+    "2 Aminoethoxymethyl",
+    "2Aminoethoxymethyl"
+   ]
+  },
+  {
+   "canonical_name": "2-Aminopropoxymethyl",
+   "aliases": [
+    "2 Aminopropoxymethyl",
+    "2Aminopropoxymethyl"
+   ]
+  },
+  {
+   "canonical_name": "2-Aminopropyl",
+   "aliases": [
+    "2 Aminopropyl",
+    "2Aminopropyl"
+   ]
+  },
+  {
+   "canonical_name": "2-Cyanoethyl",
+   "aliases": [
+    "2 Cyanoethyl",
+    "2Cyanoethyl"
+   ]
+  },
+  {
+   "canonical_name": "2-Deoxy",
+   "aliases": [
+    "2 Deoxy",
+    "2' deoxy",
+    "2'-deoxy",
+    "2Deoxy",
+    "2′ deoxy",
+    "2′-deoxy",
+    "2′deoxy",
+    "deoxyribose",
+    "DNA",
+    "deoxy"
+   ]
+  },
+  {
+   "canonical_name": "2-Deoxy-2-N,4-C-Ethylene-Locked nucleic acid",
+   "aliases": [
+    "2 Deoxy 2 N,4 C Ethylene Locked nucleic acid",
+    "2-Deoxy-2-N,4-C-Ethylene-Locked-nucleic-acid",
+    "2Deoxy2N,4CEthyleneLockednucleicacid"
+   ]
+  },
+  {
+   "canonical_name": "2-Deoxyribonucleotide",
+   "aliases": [
+    "2 Deoxyribonucleotide",
+    "2Deoxyribonucleotide"
+   ]
+  },
+  {
+   "canonical_name": "2-Deoxythymidine",
+   "aliases": [
+    "2 Deoxythymidine",
+    "2' deoxythymidine",
+    "2'-deoxythymidine",
+    "2Deoxythymidine",
+    "2′ deoxythymidine",
+    "2′-deoxythymidine",
+    "2′deoxythymidine",
+    "DeoxyThymidine",
+    "dT",
+    "deoxythymidine"
+   ]
+  },
+  {
+   "canonical_name": "2-F",
+   "aliases": [
+    "2 Deoxy 2 F",
+    "2 Deoxy 2 Fribose",
+    "2 F",
+    "2 fluoro",
+    "2' F",
+    "2' fluoro",
+    "2' fluororibose",
+    "2'-F",
+    "2'-fluoro",
+    "2'-fluororibose",
+    "2-Deoxy-2-F",
+    "2-Deoxy-2-Fribose",
+    "2-fluoro",
+    "2Deoxy2F",
+    "2Deoxy2Fribose",
+    "2F",
+    "2fluoro",
+    "2fluororibose",
+    "2′ F",
+    "2′ fluoro",
+    "2′ fluororibose",
+    "2′-F",
+    "2′-fluoro",
+    "2′-fluororibose",
+    "2′F",
+    "2′fluoro",
+    "2′fluororibose"
+   ]
+  },
+  {
+   "canonical_name": "2-Guanidinoethyl",
+   "aliases": [
+    "2 Guanidinoethyl",
+    "2Guanidinoethyl"
+   ]
+  },
+  {
+   "canonical_name": "2-H",
+   "aliases": [
+    "2 H",
+    "2H"
+   ]
+  },
+  {
+   "canonical_name": "2-Hethyl 2,3,4,6-tetra-O-Methyl-b-D-Glucopyranoside",
+   "aliases": [
+    "2 Hethyl 2,3,4,6 tetra O Methyl b D Glucopyranoside",
+    "2-Hethyl-2,3,4,6-tetra-O-Methyl-b-D-Glucopyranoside",
+    "2Hethyl2,3,4,6tetraOMethylbDGlucopyranoside"
+   ]
+  },
+  {
+   "canonical_name": "2-Hl",
+   "aliases": [
+    "2 Hl",
+    "2Hl"
+   ]
+  },
+  {
+   "canonical_name": "2-Methyl",
+   "aliases": [
+    "2 Methyl",
+    "2Methyl"
+   ]
+  },
+  {
+   "canonical_name": "2-N-Adamant-1-yl-Methylcarbonyl-2-Amino-Locked nucleic acid",
+   "aliases": [
+    "2 N Adamant 1 yl Methylcarbonyl 2 Amino Locked nucleic acid",
+    "2-N-Adamant-1-yl-Methylcarbonyl-2-Amino-Locked-nucleic-acid",
+    "2NAdamant1ylMethylcarbonyl2AminoLockednucleicacid"
+   ]
+  },
+  {
+   "canonical_name": "2-N-Pyren-1-yl Methyl-2-Amino-Locked nucleic acid",
+   "aliases": [
+    "2 N Pyren 1 yl Methyl 2 Amino Locked nucleic acid",
+    "2-N-Pyren-1-yl-Methyl-2-Amino-Locked-nucleic-acid",
+    "2NPyren1ylMethyl2AminoLockednucleicacid"
+   ]
+  },
+  {
+   "canonical_name": "2-O-(2-methoxyethyl)ribose",
+   "aliases": [
+    "2 MOE",
+    "2 O (2 methoxyethyl)ribose",
+    "2 O methoxyethylribose",
+    "2' MOE",
+    "2' O methoxyethyl",
+    "2' O methoxyethyl ribose",
+    "2' O MOE ribose",
+    "2'-MOE",
+    "2'-O-methoxyethyl",
+    "2'-O-methoxyethyl ribose",
+    "2'-O-methoxyethyl-ribose",
+    "2'-O-MOE ribose",
+    "2'-O-MOE-ribose",
+    "2-MOE",
+    "2-O-methoxyethylribose",
+    "2MOE",
+    "2O(2methoxyethyl)ribose",
+    "2Omethoxyethyl",
+    "2Omethoxyethylribose",
+    "2OMOEribose",
+    "2′ MOE",
+    "2′ O methoxyethyl",
+    "2′ O methoxyethyl ribose",
+    "2′ O MOE ribose",
+    "2′-MOE",
+    "2′-O-methoxyethyl",
+    "2′-O-methoxyethyl ribose",
+    "2′-O-methoxyethyl-ribose",
+    "2′-O-MOE ribose",
+    "2′-O-MOE-ribose",
+    "2′MOE",
+    "2′Omethoxyethyl",
+    "2′Omethoxyethylribose",
+    "2′OMOEribose",
+    "MOE",
+    "MOE ribose",
+    "MOE-ribose",
+    "MOEribose",
+    "2-O-(2-methoxyethyl)ribose"
+   ]
+  },
+  {
+   "canonical_name": "2-O-Allyl-ribose",
+   "aliases": [
+    "2 O Allyl ribose",
+    "2' O allyl",
+    "2'-O-allyl",
+    "2Oallyl",
+    "2OAllylribose",
+    "2′ O allyl",
+    "2′-O-allyl",
+    "2′Oallyl"
+   ]
+  },
+  {
+   "canonical_name": "2-O-Aminoethyl-ribose",
+   "aliases": [
+    "2 Aminoethyl",
+    "2 O Aminoethyl ribose",
+    "2' O aminoethyl",
+    "2' O aminoethyl ribose",
+    "2'-O-aminoethyl",
+    "2'-O-aminoethyl ribose",
+    "2'-O-aminoethyl-ribose",
+    "2-Aminoethyl",
+    "2Aminoethyl",
+    "2Oaminoethyl",
+    "2OAminoethylribose",
+    "2′ O aminoethyl",
+    "2′ O aminoethyl ribose",
+    "2′-O-aminoethyl",
+    "2′-O-aminoethyl ribose",
+    "2′-O-aminoethyl-ribose",
+    "2′Oaminoethyl",
+    "2′Oaminoethylribose"
+   ]
+  },
+  {
+   "canonical_name": "2-O-Benzyl",
+   "aliases": [
+    "2 O Benzyl",
+    "2' O benzyl",
+    "2'-O-benzyl",
+    "2OBenzyl",
+    "2′ O benzyl",
+    "2′-O-benzyl",
+    "2′Obenzyl"
+   ]
+  },
+  {
+   "canonical_name": "2-O-Guanidinoethyl-ribose",
+   "aliases": [
+    "2 O Guanidinoethyl ribose",
+    "2' O guanidinoethyl",
+    "2'-O-guanidinoethyl",
+    "2Oguanidinoethyl",
+    "2OGuanidinoethylribose",
+    "2′ O guanidinoethyl",
+    "2′-O-guanidinoethyl",
+    "2′Oguanidinoethyl"
+   ]
+  },
+  {
+   "canonical_name": "2-O-Guanidinopropyl",
+   "aliases": [
+    "2 O Guanidinopropyl",
+    "2' O guanidinopropyl",
+    "2'-O-guanidinopropyl",
+    "2OGuanidinopropyl",
+    "2′ O guanidinopropyl",
+    "2′-O-guanidinopropyl",
+    "2′Oguanidinopropyl"
+   ]
+  },
+  {
+   "canonical_name": "2-O-Methyl",
+   "aliases": [
+    "2 Methoxy",
+    "2 O Me",
+    "2 O Methyl",
+    "2 OMe",
+    "2' O Me",
+    "2' O methyl",
+    "2' O methyl ribose",
+    "2' OMe",
+    "2'-O-Me",
+    "2'-O-methyl",
+    "2'-O-methyl ribose",
+    "2'-O-methyl-ribose",
+    "2'-OMe",
+    "2'OMe",
+    "2-Methoxy",
+    "2-O-Me",
+    "2-OMe",
+    "2Methoxy",
+    "2OMe",
+    "2OMethyl",
+    "2Omethylribose",
+    "2′ O Me",
+    "2′ O methyl",
+    "2′ O methyl ribose",
+    "2′ OMe",
+    "2′-O-Me",
+    "2′-O-methyl",
+    "2′-O-methyl ribose",
+    "2′-O-methyl-ribose",
+    "2′-OMe",
+    "2′OMe",
+    "2′Omethyl",
+    "2′Omethylribose",
+    "O-Me",
+    "OMe"
+   ]
+  },
+  {
+   "canonical_name": "2-O-Methyl,4’-F ",
+   "aliases": [
+    "2 O Methyl,4' F",
+    "2 O Methyl,4’ F",
+    "2 O Methyl,4′ F",
+    "2-O-Methyl,4'-F",
+    "2-O-Methyl,4′-F",
+    "2OMethyl,4F",
+    "2OMethyl,4’F",
+    "2OMethyl,4′F"
+   ]
+  },
+  {
+   "canonical_name": "2-O-Methyl-4-Thioribose",
+   "aliases": [
+    "2 O Methyl 4 Thioribose",
+    "2OMethyl4Thioribose"
+   ]
+  },
+  {
+   "canonical_name": "2-Thiouridine",
+   "aliases": [
+    "2 thio U",
+    "2 thioU",
+    "2 Thiouridine",
+    "2-thio-U",
+    "2-thioU",
+    "2thioU",
+    "2Thiouridine",
+    "s2U"
+   ]
+  },
+  {
+   "canonical_name": "2‘-F,4'-OMe-dT",
+   "aliases": [
+    "2' F,4' OMe dT",
+    "2'-F,4'-OMe-dT",
+    "2F,4OMedT",
+    "2‘ F,4' OMe dT",
+    "2‘F,4OMedT",
+    "2′ F,4′ OMe dT",
+    "2′-F,4′-OMe-dT",
+    "2′F,4′OMedT"
+   ]
+  },
+  {
+   "canonical_name": "2′-Hydroxymethyl-Tetrahydrofuran-5′-Phosphate",
+   "aliases": [
+    "2' Hydroxymethyl Tetrahydrofuran 5' Phosphate",
+    "2'-Hydroxymethyl-Tetrahydrofuran-5'-Phosphate",
+    "2HydroxymethylTetrahydrofuran5Phosphate",
+    "2′ Hydroxymethyl Tetrahydrofuran 5′ Phosphate",
+    "2′HydroxymethylTetrahydrofuran5′Phosphate"
+   ]
+  },
+  {
+   "canonical_name": "2′-Methoxyethyl adenosine",
+   "aliases": [
+    "2 MOE A",
+    "2' Methoxyethyl adenosine",
+    "2' MOE A",
+    "2'-Methoxyethyl adenosine",
+    "2'-Methoxyethyl-adenosine",
+    "2'-MOE-A",
+    "2-MOE-A",
+    "2Methoxyethyladenosine",
+    "2MOEA",
+    "2′ Methoxyethyl adenosine",
+    "2′ MOE A",
+    "2′-Methoxyethyl-adenosine",
+    "2′-MOE-A",
+    "2′Methoxyethyladenosine",
+    "2′MOEA",
+    "MOE A",
+    "MOE-A",
+    "MOEA"
+   ]
+  },
+  {
+   "canonical_name": "2′-Methoxyethyl cytidine",
+   "aliases": [
+    "2 MOE C",
+    "2' Methoxyethyl cytidine",
+    "2' MOE C",
+    "2'-Methoxyethyl cytidine",
+    "2'-Methoxyethyl-cytidine",
+    "2'-MOE-C",
+    "2-MOE-C",
+    "2Methoxyethylcytidine",
+    "2MOEC",
+    "2′ Methoxyethyl cytidine",
+    "2′ MOE C",
+    "2′-Methoxyethyl-cytidine",
+    "2′-MOE-C",
+    "2′Methoxyethylcytidine",
+    "2′MOEC",
+    "MOE C",
+    "MOE-C",
+    "MOEC"
+   ]
+  },
+  {
+   "canonical_name": "2′-Methoxyethyl guanosine",
+   "aliases": [
+    "2 MOE G",
+    "2' Methoxyethyl guanosine",
+    "2' MOE G",
+    "2'-Methoxyethyl guanosine",
+    "2'-Methoxyethyl-guanosine",
+    "2'-MOE-G",
+    "2-MOE-G",
+    "2Methoxyethylguanosine",
+    "2MOEG",
+    "2′ Methoxyethyl guanosine",
+    "2′ MOE G",
+    "2′-Methoxyethyl-guanosine",
+    "2′-MOE-G",
+    "2′Methoxyethylguanosine",
+    "2′MOEG",
+    "MOE G",
+    "MOE-G",
+    "MOEG"
+   ]
+  },
+  {
+   "canonical_name": "2′-Methoxyethyl thymidine",
+   "aliases": [
+    "2' Methoxyethyl thymidine",
+    "2' MOE dT",
+    "2'-Methoxyethyl thymidine",
+    "2'-Methoxyethyl-thymidine",
+    "2'-MOE-dT",
+    "2Methoxyethylthymidine",
+    "2MOEdT",
+    "2′ Methoxyethyl thymidine",
+    "2′ MOE dT",
+    "2′-Methoxyethyl-thymidine",
+    "2′-MOE-dT",
+    "2′Methoxyethylthymidine",
+    "2′MOEdT",
+    "MOE dT",
+    "MOE T",
+    "MOE-dT",
+    "MOE-T",
+    "MOEdT",
+    "MOET"
+   ]
+  },
+  {
+   "canonical_name": "2′-Methoxyethyl uridine",
+   "aliases": [
+    "2 MOE U",
+    "2' Methoxyethyl uridine",
+    "2' MOE U",
+    "2'-Methoxyethyl uridine",
+    "2'-Methoxyethyl-uridine",
+    "2'-MOE-U",
+    "2-MOE-U",
+    "2Methoxyethyluridine",
+    "2MOEU",
+    "2′ Methoxyethyl uridine",
+    "2′ MOE U",
+    "2′-Methoxyethyl-uridine",
+    "2′-MOE-U",
+    "2′Methoxyethyluridine",
+    "2′MOEU",
+    "MOE U",
+    "MOE-U",
+    "MOEU"
+   ]
+  },
+  {
+   "canonical_name": "2′-O-PiBuOM ",
+   "aliases": [
+    "2' O PiBuOM",
+    "2'-O-PiBuOM",
+    "2OPiBuOM",
+    "2′ O PiBuOM",
+    "2′OPiBuOM"
+   ]
+  },
+  {
+   "canonical_name": "2′-O-PivOM ",
+   "aliases": [
+    "2' O PivOM",
+    "2'-O-PivOM",
+    "2OPivOM",
+    "2′ O PivOM",
+    "2′OPivOM"
+   ]
+  },
+  {
+   "canonical_name": "2′-O-hexadecyl adenosine",
+   "aliases": [
+    "2' O hexadecyl adenosine",
+    "2'-O-hexadecyl adenosine",
+    "2'-O-hexadecyl-adenosine",
+    "2Ohexadecyladenosine",
+    "2′ O hexadecyl adenosine",
+    "2′-O-hexadecyl-adenosine",
+    "2′Ohexadecyladenosine",
+    "Ahd"
+   ]
+  },
+  {
+   "canonical_name": "2′-O-hexadecyl cytidine",
+   "aliases": [
+    "2' O hexadecyl cytidine",
+    "2'-O-hexadecyl cytidine",
+    "2'-O-hexadecyl-cytidine",
+    "2Ohexadecylcytidine",
+    "2′ O hexadecyl cytidine",
+    "2′-O-hexadecyl-cytidine",
+    "2′Ohexadecylcytidine",
+    "Chd",
+    "C-hd"
+   ]
+  },
+  {
+   "canonical_name": "2′-O-hexadecyl guanosine",
+   "aliases": [
+    "2' O hexadecyl guanosine",
+    "2'-O-hexadecyl guanosine",
+    "2'-O-hexadecyl-guanosine",
+    "2Ohexadecylguanosine",
+    "2′ O hexadecyl guanosine",
+    "2′-O-hexadecyl-guanosine",
+    "2′Ohexadecylguanosine",
+    "Ghd"
+   ]
+  },
+  {
+   "canonical_name": "2′-O-hexadecyl uridine",
+   "aliases": [
+    "2' O hexadecyl uridine",
+    "2'-O-hexadecyl uridine",
+    "2'-O-hexadecyl-uridine",
+    "2Ohexadecyluridine",
+    "2′ O hexadecyl uridine",
+    "2′-O-hexadecyl-uridine",
+    "2′Ohexadecyluridine",
+    "Uhd"
+   ]
+  },
+  {
+   "canonical_name": "2′-OEt-m3U",
+   "aliases": [
+    "2' O ethyl 3 methyluridine",
+    "2' OEt m3U",
+    "2'-O-ethyl-3-methyluridine",
+    "2'-OEt-m3U",
+    "2OEt m3U",
+    "2OEt-m3U",
+    "2Oethyl3methyluridine",
+    "2OEtm3U",
+    "2′ O ethyl 3 methyluridine",
+    "2′ OEt m3U",
+    "2′-O-ethyl-3-methyluridine",
+    "2′Oethyl3methyluridine",
+    "2′OEtm3U"
+   ]
+  },
+  {
+   "canonical_name": "2′-OMe-m3U",
+   "aliases": [
+    "2' O methyl 3 methyluridine",
+    "2' OMe m3U",
+    "2'-O-methyl-3-methyluridine",
+    "2'-OMe-m3U",
+    "2OMe m3U",
+    "2OMe-m3U",
+    "2OMem3U",
+    "2Omethyl3methyluridine",
+    "2′ O methyl 3 methyluridine",
+    "2′ OMe m3U",
+    "2′-O-methyl-3-methyluridine",
+    "2′OMem3U",
+    "2′Omethyl3methyluridine"
+   ]
+  },
+  {
+   "canonical_name": "3-Amino",
+   "aliases": [
+    "3 Amino",
+    "3' amino",
+    "3' NH2",
+    "3'-amino",
+    "3'-NH2",
+    "3Amino",
+    "3NH2",
+    "3′ amino",
+    "3′ NH2",
+    "3′-amino",
+    "3′-NH2",
+    "3′amino",
+    "3′NH2"
+   ]
+  },
+  {
+   "canonical_name": "3′-Phosphorothioate-Cholesterol-Triethylene Glycol",
+   "aliases": [
+    "3' Phosphorothioate Cholesterol Triethylene Glycol",
+    "3'-Phosphorothioate-Cholesterol-Triethylene Glycol",
+    "3'-Phosphorothioate-Cholesterol-Triethylene-Glycol",
+    "3PhosphorothioateCholesterolTriethyleneGlycol",
+    "3′ Phosphorothioate Cholesterol Triethylene Glycol",
+    "3′-Phosphorothioate-Cholesterol-Triethylene-Glycol",
+    "3′PhosphorothioateCholesterolTriethyleneGlycol"
+   ]
+  },
+  {
+   "canonical_name": "4'-OMe-dT",
+   "aliases": [
+    "4' OMe dT",
+    "4OMedT",
+    "4′ OMe dT",
+    "4′-OMe-dT",
+    "4′OMedT"
+   ]
+  },
+  {
+   "canonical_name": "4-C- Aminomethyl-2-O-Methyl",
+   "aliases": [
+    "4 C Aminomethyl 2 O Methyl",
+    "4-C--Aminomethyl-2-O-Methyl",
+    "4CAminomethyl2OMethyl"
+   ]
+  },
+  {
+   "canonical_name": "4-C-ACM-2-O-MOE",
+   "aliases": [
+    "4 C ACM 2 O MOE",
+    "4CACM2OMOE"
+   ]
+  },
+  {
+   "canonical_name": "4-C-Hydroxymethyl Deoxyribonucleic acid",
+   "aliases": [
+    "4 C Hydroxymethyl Deoxyribonucleic acid",
+    "4-C-Hydroxymethyl-Deoxyribonucleic-acid",
+    "4CHydroxymethylDeoxyribonucleicacid"
+   ]
+  },
+  {
+   "canonical_name": "4-Thioribose",
+   "aliases": [
+    "4 Thioribose",
+    "4Thioribose"
+   ]
+  },
+  {
+   "canonical_name": "4′-C-aminoethyl-2′-O-methyluridine",
+   "aliases": [
+    "4' C aminoethyl 2' O methyluridine",
+    "4'-C-aminoethyl-2'-O-methyluridine",
+    "4Caminoethyl2Omethyluridine",
+    "4′ C aminoethyl 2′ O methyluridine",
+    "4′Caminoethyl2′Omethyluridine"
+   ]
+  },
+  {
+   "canonical_name": "4′-C-aminoethyl-2′-fluorouridine",
+   "aliases": [
+    "4' C aminoethyl 2' fluorouridine",
+    "4'-C-aminoethyl-2'-fluorouridine",
+    "4Caminoethyl2fluorouridine",
+    "4′ C aminoethyl 2′ fluorouridine",
+    "4′Caminoethyl2′fluorouridine"
+   ]
+  },
+  {
+   "canonical_name": "5-Amino",
+   "aliases": [
+    "5 Amino",
+    "5' amino",
+    "5' NH2",
+    "5'-amino",
+    "5'-NH2",
+    "5Amino",
+    "5NH2",
+    "5′ amino",
+    "5′ NH2",
+    "5′-amino",
+    "5′-NH2",
+    "5′amino",
+    "5′NH2"
+   ]
+  },
+  {
+   "canonical_name": "5-Bromo-Uridine",
+   "aliases": [
+    "5 Bromo Uridine",
+    "5 bromouridine",
+    "5 BrU",
+    "5-bromouridine",
+    "5-BrU",
+    "5BromoUridine",
+    "5BrU",
+    "BrU"
+   ]
+  },
+  {
+   "canonical_name": "5-Fluoro-2-Deoxyuridine",
+   "aliases": [
+    "5 FdU",
+    "5 Fluoro 2 Deoxyuridine",
+    "5-FdU",
+    "5FdU",
+    "5Fluoro2Deoxyuridine",
+    "FdU",
+    "floxuridine"
+   ]
+  },
+  {
+   "canonical_name": "5-Fluorouracil",
+   "aliases": [
+    "5 Fluorouracil",
+    "5 FU",
+    "5-FU",
+    "5Fluorouracil",
+    "5FU",
+    "fluorouracil"
+   ]
+  },
+  {
+   "canonical_name": "5-Iodo-Uridine",
+   "aliases": [
+    "5 Iodo Uridine",
+    "5 iodouridine",
+    "5 IU",
+    "5-iodouridine",
+    "5-IU",
+    "5IodoUridine",
+    "5IU"
+   ]
+  },
+  {
+   "canonical_name": "5-Methylcytosine",
+   "aliases": [
+    "5 methyl C",
+    "5 Methylcytosine",
+    "5-methyl-C",
+    "5mC",
+    "5methylC",
+    "5Methylcytosine",
+    "m5C",
+    "5-methylcytosine"
+   ]
+  },
+  {
+   "canonical_name": "5-O-Methyl",
+   "aliases": [
+    "5 O Methyl",
+    "5' O methyl",
+    "5' OMe",
+    "5'-O-methyl",
+    "5'-OMe",
+    "5OMe",
+    "5OMethyl",
+    "5′ O methyl",
+    "5′ OMe",
+    "5′-O-methyl",
+    "5′-OMe",
+    "5′OMe",
+    "5′Omethyl"
+   ]
+  },
+  {
+   "canonical_name": "5-O-methylthymidine",
+   "aliases": [
+    "5 O methylthymidine",
+    "5Omethylthymidine"
+   ]
+  },
+  {
+   "canonical_name": "5-Phosphate",
+   "aliases": [
+    "5 Phosphate",
+    "5' P",
+    "5' phosphate",
+    "5'-P",
+    "5'-phosphate",
+    "5P",
+    "5Phosphate",
+    "5′ P",
+    "5′ phosphate",
+    "5′-P",
+    "5′-phosphate",
+    "5′P",
+    "5′phosphate",
+    "phosphate group",
+    "phosphate-group",
+    "phosphategroup"
+   ]
+  },
+  {
+   "canonical_name": "5-Thio",
+   "aliases": [
+    "5 Thio",
+    "5' thio",
+    "5'-thio",
+    "5Thio",
+    "5′ thio",
+    "5′-thio",
+    "5′thio"
+   ]
+  },
+  {
+   "canonical_name": "5-Triphosphate",
+   "aliases": [
+    "5 Triphosphate",
+    "5' triphosphate",
+    "5'-triphosphate",
+    "5ppp",
+    "5Triphosphate",
+    "5′ triphosphate",
+    "5′-triphosphate",
+    "5′triphosphate",
+    "ppp"
+   ]
+  },
+  {
+   "canonical_name": "5-nitroindole",
+   "aliases": [
+    "5 NI",
+    "5 nitroindole",
+    "5-NI",
+    "5NI",
+    "5nitroindole",
+    "nitroindole"
+   ]
+  },
+  {
+   "canonical_name": "5′-(E)-Vinylphosphonate",
+   "aliases": [
+    "(E) 5' vinylphosphonate",
+    "(E) 5′ vinylphosphonate",
+    "(E)-5'-vinylphosphonate",
+    "(E)-5′-vinylphosphonate",
+    "(E)5vinylphosphonate",
+    "(E)5′vinylphosphonate",
+    "5' (E) Vinylphosphonate",
+    "5' vinylphosphonate",
+    "5' VP",
+    "5'-(E)-Vinylphosphonate",
+    "5'-vinylphosphonate",
+    "5'-VP",
+    "5(E)Vinylphosphonate",
+    "5vinylphosphonate",
+    "5VP",
+    "5′ (E) Vinylphosphonate",
+    "5′ vinylphosphonate",
+    "5′ VP",
+    "5′(E)Vinylphosphonate",
+    "5′-vinylphosphonate",
+    "5′-VP",
+    "5′vinylphosphonate",
+    "5′VP",
+    "E 5VP",
+    "E-5VP",
+    "E5VP",
+    "vinylphosphonate",
+    "VP",
+    "E-VP",
+    "(E)-Vinylphosphonate"
+   ]
+  },
+  {
+   "canonical_name": "6-mCEPh-purine",
+   "aliases": [
+    "6 mCEPh purine",
+    "6mCEPhpurine"
+   ]
+  },
+  {
+   "canonical_name": "ANA",
+   "aliases": []
+  },
+  {
+   "canonical_name": "Alfa-L-Locked nucleic acid",
+   "aliases": [
+    "Alfa L Locked nucleic acid",
+    "Alfa-L-Locked-nucleic-acid",
+    "AlfaLLockednucleicacid",
+    "α L locked nucleic acid",
+    "α-L-locked nucleic acid",
+    "α-L-locked-nucleic-acid",
+    "αLlockednucleicacid"
+   ]
+  },
+  {
+   "canonical_name": "Altritol nucleic acid",
+   "aliases": [
+    "Altritol-nucleic-acid",
+    "Altritolnucleicacid"
+   ]
+  },
+  {
+   "canonical_name": "Amino-linker",
+   "aliases": [
+    "Amino linker",
+    "amino linker modification",
+    "amino-linker modification",
+    "amino-linker-modification",
+    "Aminolinker",
+    "aminolinkermodification"
+   ]
+  },
+  {
+   "canonical_name": "Aminoisonucleotide-Adenine",
+   "aliases": [
+    "Aminoisonucleotide Adenine",
+    "AminoisonucleotideAdenine"
+   ]
+  },
+  {
+   "canonical_name": "Aminoisonucleotide-thymidine",
+   "aliases": [
+    "Aminoisonucleotide thymidine",
+    "Aminoisonucleotidethymidine"
+   ]
+  },
+  {
+   "canonical_name": "Anthracene",
+   "aliases": []
+  },
+  {
+   "canonical_name": "Assymetric siRNA (3-End Overhang)",
+   "aliases": [
+    "asiRNA",
+    "Assymetric siRNA (3 End Overhang)",
+    "Assymetric-siRNA-(3-End-Overhang)",
+    "AssymetricsiRNA(3EndOverhang)",
+    "asymmetric siRNA",
+    "Asymmetric siRNA (3' end overhang)",
+    "Asymmetric siRNA (3'-end overhang)",
+    "Asymmetric siRNA (3′ end overhang)",
+    "Asymmetric siRNA (3′-end overhang)",
+    "asymmetric siRNA 3 end overhang",
+    "asymmetric siRNA 3' end overhang",
+    "asymmetric siRNA 3'-end overhang",
+    "asymmetric siRNA 3-end overhang",
+    "asymmetric siRNA 3′ end overhang",
+    "asymmetric siRNA 3′-end overhang",
+    "asymmetric-siRNA",
+    "Asymmetric-siRNA-(3'-end-overhang)",
+    "Asymmetric-siRNA-(3′-end-overhang)",
+    "asymmetric-siRNA-3'-end-overhang",
+    "asymmetric-siRNA-3-end-overhang",
+    "asymmetric-siRNA-3′-end-overhang",
+    "asymmetricsiRNA",
+    "AsymmetricsiRNA(3endoverhang)",
+    "AsymmetricsiRNA(3′endoverhang)",
+    "asymmetricsiRNA3endoverhang",
+    "asymmetricsiRNA3′endoverhang"
+   ]
+  },
+  {
+   "canonical_name": "Biotin",
+   "aliases": [
+    "biotin conjugate",
+    "biotin-conjugate",
+    "biotinconjugate",
+    "biotinyl"
+   ]
+  },
+  {
+   "canonical_name": "Boranophosphate",
+   "aliases": [
+    "borano phosphate",
+    "borano-phosphate",
+    "BP linkage",
+    "BP-linkage",
+    "BPlinkage"
+   ]
+  },
+  {
+   "canonical_name": "Boron cluster",
+   "aliases": [
+    "Boron-cluster",
+    "Boroncluster"
+   ]
+  },
+  {
+   "canonical_name": "Chol-TEG",
+   "aliases": [
+    "chol teg",
+    "Cholesterol triethylene glycol conjugate",
+    "cholteg",
+    "chol-TEG",
+    "cholesterol-TEG"
+   ]
+  },
+  {
+   "canonical_name": "Cholesterol",
+   "aliases": [
+    "5 Cholesterol",
+    "5-Cholesterol",
+    "5Cholesterol",
+    "Chol",
+    "cholesterol conjugate",
+    "cholesterol-conjugate",
+    "cholesterolconjugate",
+    "cholesteryl",
+    "cholesterol"
+   ]
+  },
+  {
+   "canonical_name": "Cholesterol-Triethylene Glycol",
+   "aliases": [
+    "Cholesterol TEG",
+    "Cholesterol Triethylene Glycol",
+    "Cholesterol-TEG",
+    "Cholesterol-Triethylene-Glycol",
+    "CholesterolTEG",
+    "CholesterolTriethyleneGlycol",
+    "Cholesterol–triethylene glycol",
+    "Cholesterol–triethylene-glycol",
+    "Cholesterol–triethyleneglycol",
+    "cholesteryl TEG",
+    "cholesteryl-TEG",
+    "cholesterylTEG"
+   ]
+  },
+  {
+   "canonical_name": "Cyclohexenyl nucleic acid",
+   "aliases": [
+    "CeNA",
+    "cyclohexenyl NA",
+    "cyclohexenyl-NA",
+    "Cyclohexenyl-nucleic-acid",
+    "cyclohexenylNA",
+    "Cyclohexenylnucleicacid"
+   ]
+  },
+  {
+   "canonical_name": "D-Isonucleoside adenosine",
+   "aliases": [
+    "D Isonucleoside adenosine",
+    "D-Isonucleoside-adenosine",
+    "DIsonucleosideadenosine"
+   ]
+  },
+  {
+   "canonical_name": "D-Isonucleoside uracil",
+   "aliases": [
+    "D Isonucleoside uracil",
+    "D-isonucleoside-uracil",
+    "DIsonucleosideuracil"
+   ]
+  },
+  {
+   "canonical_name": "Deoxyadenine",
+   "aliases": []
+  },
+  {
+   "canonical_name": "Deoxyuridine",
+   "aliases": []
+  },
+  {
+   "canonical_name": "Diaminopurine",
+   "aliases": [
+    "2,6 diaminopurine",
+    "2,6-diaminopurine",
+    "2,6diaminopurine",
+    "DAP"
+   ]
+  },
+  {
+   "canonical_name": "Difluorotoluyl nucleotide",
+   "aliases": [
+    "Difluorotoluyl-nucleotide",
+    "Difluorotoluylnucleotide"
+   ]
+  },
+  {
+   "canonical_name": "Dihydrouridine",
+   "aliases": [
+    "DHU",
+    "dihydro U",
+    "dihydro-U",
+    "dihydroU"
+   ]
+  },
+  {
+   "canonical_name": "Dimethoxy-Nitrophenyl Ethyl group",
+   "aliases": [
+    "Dimethoxy Nitrophenyl Ethyl group",
+    "Dimethoxy-Nitrophenyl-Ethyl-group",
+    "DimethoxyNitrophenylEthylgroup"
+   ]
+  },
+  {
+   "canonical_name": "Dodecyl derivative",
+   "aliases": [
+    "Dodecyl-derivative",
+    "Dodecylderivative"
+   ]
+  },
+  {
+   "canonical_name": "Fluorobenzene",
+   "aliases": []
+  },
+  {
+   "canonical_name": "Fluorouridine",
+   "aliases": []
+  },
+  {
+   "canonical_name": "Glucosamine analogue",
+   "aliases": [
+    "Glucosamine-analogue",
+    "Glucosamineanalogue",
+    "glucosamine analog",
+    "glucosamine analogue"
+   ]
+  },
+  {
+   "canonical_name": "Hexitol nucleic acid",
+   "aliases": [
+    "hexitol NA",
+    "hexitol-NA",
+    "Hexitol-nucleic-acid",
+    "hexitolNA",
+    "Hexitolnucleicacid",
+    "HNA"
+   ]
+  },
+  {
+   "canonical_name": "Hydroxyphenyl-Conjugated",
+   "aliases": [
+    "Hydroxyphenyl Conjugated",
+    "HydroxyphenylConjugated"
+   ]
+  },
+  {
+   "canonical_name": "Hypoxanthine",
+   "aliases": []
+  },
+  {
+   "canonical_name": "Inverted DeoxyThymidine",
+   "aliases": [
+    "idT",
+    "inv dT",
+    "inv-dT",
+    "invdT",
+    "inverted dT",
+    "Inverted-DeoxyThymidine",
+    "inverted-dT",
+    "InvertedDeoxyThymidine",
+    "inverteddT"
+   ]
+  },
+  {
+   "canonical_name": "Inverted abasic",
+   "aliases": [
+    "iAb",
+    "inv abasic",
+    "inv-abasic",
+    "invabasic",
+    "inverted abasic site",
+    "Inverted-abasic",
+    "inverted-abasic-site",
+    "Invertedabasic",
+    "invertedabasicsite",
+    "inverted abasic",
+    "Y34",
+    "Y44"
+   ]
+  },
+  {
+   "canonical_name": "Inverted thymidine",
+   "aliases": [
+    "Inverted-thymidine",
+    "Invertedthymidine"
+   ]
+  },
+  {
+   "canonical_name": "L-Isonucleoside adenosine",
+   "aliases": [
+    "L Isonucleoside adenosine",
+    "L-Isonucleoside-adenosine",
+    "LIsonucleosideadenosine"
+   ]
+  },
+  {
+   "canonical_name": "L-Isonucleoside uracil",
+   "aliases": [
+    "L Isonucleoside uracil",
+    "L-Isonucleoside-uracil",
+    "LIsonucleosideuracil"
+   ]
+  },
+  {
+   "canonical_name": "L-isonucleoside thymidine",
+   "aliases": [
+    "L isonucleoside thymidine",
+    "L-isonucleoside-thymidine",
+    "Lisonucleosidethymidine"
+   ]
+  },
+  {
+   "canonical_name": "Lauric acid",
+   "aliases": [
+    "Lauric-acid",
+    "Lauricacid"
+   ]
+  },
+  {
+   "canonical_name": "Locked nucleic acid",
+   "aliases": [
+    "LNA",
+    "locked NA",
+    "locked-NA",
+    "Locked-nucleic-acid",
+    "lockedNA",
+    "Lockednucleicacid",
+    "locked nucleic acid"
+   ]
+  },
+  {
+   "canonical_name": "Methyl",
+   "aliases": []
+  },
+  {
+   "canonical_name": "Methylcytosine",
+   "aliases": []
+  },
+  {
+   "canonical_name": "Methyluridine",
+   "aliases": []
+  },
+  {
+   "canonical_name": "Mismatch",
+   "aliases": []
+  },
+  {
+   "canonical_name": "Morpholinouridine",
+   "aliases": []
+  },
+  {
+   "canonical_name": "Mutation",
+   "aliases": []
+  },
+  {
+   "canonical_name": "N-3 Methyluridine",
+   "aliases": [
+    "3 methyl U",
+    "3 methyluridine",
+    "3-methyl-U",
+    "3-methyluridine",
+    "3methylU",
+    "3methyluridine",
+    "m3U",
+    "N 3 Methyluridine",
+    "N-3-Methyluridine",
+    "N3Methyluridine"
+   ]
+  },
+  {
+   "canonical_name": "N-acetyl-galactosamine",
+   "aliases": [
+    "GalNAc",
+    "GalNAc conjugate",
+    "GalNAc-conjugate",
+    "GalNAcconjugate",
+    "N acetyl D galactosamine",
+    "N acetyl galactosamine",
+    "N acetylgalactosamine",
+    "N-acetyl-D-galactosamine",
+    "N-acetylgalactosamine",
+    "NacetylDgalactosamine",
+    "Nacetylgalactosamine",
+    "L96"
+   ]
+  },
+  {
+   "canonical_name": "N-hexylhexadecanamide",
+   "aliases": [
+    "N hexylhexadecanamide",
+    "Nhexylhexadecanamide"
+   ]
+  },
+  {
+   "canonical_name": "Naphthalene modification",
+   "aliases": [
+    "Naphthalene-modification",
+    "Naphthalenemodification"
+   ]
+  },
+  {
+   "canonical_name": "O-Methyl",
+   "aliases": [
+    "O Methyl",
+    "OMethyl"
+   ]
+  },
+  {
+   "canonical_name": "Oxetane-Locked nucleic acid",
+   "aliases": [
+    "Oxetane Locked nucleic acid",
+    "Oxetane-Locked-nucleic-acid",
+    "OxetaneLockednucleicacid"
+   ]
+  },
+  {
+   "canonical_name": "Palmitic Acid",
+   "aliases": [
+    "hexadecanoic acid",
+    "hexadecanoic-acid",
+    "hexadecanoicacid",
+    "Palmitic-Acid",
+    "PalmiticAcid"
+   ]
+  },
+  {
+   "canonical_name": "Peptide nucleic acids",
+   "aliases": [
+    "peptide nucleic acid",
+    "peptide-nucleic-acid",
+    "Peptide-nucleic-acids",
+    "peptidenucleicacid",
+    "Peptidenucleicacids",
+    "PNA"
+   ]
+  },
+  {
+   "canonical_name": "Phenyl",
+   "aliases": []
+  },
+  {
+   "canonical_name": "Phosphate",
+   "aliases": [
+    "phosphate",
+    "P"
+   ]
+  },
+  {
+   "canonical_name": "Phosphodiester",
+   "aliases": [
+    "P=O",
+    "phosphodiester backbone",
+    "phosphodiester linkage",
+    "phosphodiester-backbone",
+    "phosphodiester-linkage",
+    "phosphodiesterbackbone",
+    "phosphodiesterlinkage",
+    "PO",
+    "PO backbone",
+    "PO linkage",
+    "PO-backbone",
+    "PO-linkage",
+    "PObackbone",
+    "POlinkage"
+   ]
+  },
+  {
+   "canonical_name": "Phosphorothioate",
+   "aliases": [
+    "P=S",
+    "phosphorothioate backbone",
+    "phosphorothioate linkage",
+    "phosphorothioate-backbone",
+    "phosphorothioate-linkage",
+    "phosphorothioatebackbone",
+    "phosphorothioatelinkage",
+    "PS",
+    "PS backbone",
+    "PS linkage",
+    "PS-backbone",
+    "PS-linkage",
+    "PSbackbone",
+    "PSlinkage",
+    "phosphorothioate",
+    "s"
+   ]
+  },
+  {
+   "canonical_name": "Propynyluridine",
+   "aliases": []
+  },
+  {
+   "canonical_name": "Pseudouridine",
+   "aliases": [
+    "pseudo U",
+    "pseudo-U",
+    "pseudoU",
+    "pseudouracil",
+    "psi",
+    "Ψ"
+   ]
+  },
+  {
+   "canonical_name": "Puromycin",
+   "aliases": [
+    "puro",
+    "puromycin conjugate",
+    "puromycin-conjugate",
+    "puromycinconjugate"
+   ]
+  },
+  {
+   "canonical_name": "Pyrene modification",
+   "aliases": [
+    "Pyrene-modification",
+    "Pyrenemodification"
+   ]
+  },
+  {
+   "canonical_name": "Reverse deoxyadenosine",
+   "aliases": [
+    "inverted dA",
+    "inverted-dA",
+    "inverteddA",
+    "rev dA",
+    "rev-dA",
+    "revdA",
+    "reverse dA",
+    "reverse-dA",
+    "Reverse-deoxyadenosine",
+    "reversedA",
+    "Reversedeoxyadenosine",
+    "rDA"
+   ]
+  },
+  {
+   "canonical_name": "Serinol nucleic acid",
+   "aliases": [
+    "serinol NA",
+    "serinol-NA",
+    "Serinol-nucleic-acid",
+    "serinolNA",
+    "Serinolnucleicacid",
+    "SNA"
+   ]
+  },
+  {
+   "canonical_name": "Small internally segmented RNA",
+   "aliases": [
+    "Small-internally-segmented-RNA",
+    "SmallinternallysegmentedRNA"
+   ]
+  },
+  {
+   "canonical_name": "Standard adenine",
+   "aliases": [
+    "A base",
+    "A-base",
+    "Abase",
+    "adenine",
+    "standard A",
+    "standard-A",
+    "Standard-adenine",
+    "standardA",
+    "Standardadenine",
+    "unmodified adenine",
+    "unmodified-adenine",
+    "unmodifiedadenine"
+   ]
+  },
+  {
+   "canonical_name": "Standard cytosine",
+   "aliases": [
+    "C base",
+    "C-base",
+    "Cbase",
+    "cytosine",
+    "standard C",
+    "standard-C",
+    "Standard-cytosine",
+    "standardC",
+    "Standardcytosine",
+    "unmodified cytosine",
+    "unmodified-cytosine",
+    "unmodifiedcytosine"
+   ]
+  },
+  {
+   "canonical_name": "Standard guanine",
+   "aliases": [
+    "G base",
+    "G-base",
+    "Gbase",
+    "guanine",
+    "standard G",
+    "standard-G",
+    "Standard-guanine",
+    "standardG",
+    "Standardguanine",
+    "unmodified guanine",
+    "unmodified-guanine",
+    "unmodifiedguanine"
+   ]
+  },
+  {
+   "canonical_name": "Standard phosphate",
+   "aliases": [
+    "phosphate backbone",
+    "phosphate-backbone",
+    "phosphatebackbone",
+    "standard PO linkage",
+    "Standard-phosphate",
+    "standard-PO-linkage",
+    "Standardphosphate",
+    "standardPOlinkage",
+    "unmodified phosphate",
+    "unmodified-phosphate",
+    "unmodifiedphosphate"
+   ]
+  },
+  {
+   "canonical_name": "Standard sugar",
+   "aliases": [
+    "2' OH ribose",
+    "2'-OH ribose",
+    "2'-OH-ribose",
+    "2OHribose",
+    "2′ OH ribose",
+    "2′-OH ribose",
+    "2′-OH-ribose",
+    "2′OHribose",
+    "ribose",
+    "standard ribose",
+    "standard-ribose",
+    "Standard-sugar",
+    "standardribose",
+    "Standardsugar",
+    "unmodified ribose",
+    "unmodified-ribose",
+    "unmodifiedribose"
+   ]
+  },
+  {
+   "canonical_name": "Standard thymine",
+   "aliases": [
+    "standard T",
+    "standard-T",
+    "Standard-thymine",
+    "standardT",
+    "Standardthymine",
+    "T base",
+    "T-base",
+    "Tbase",
+    "thymine",
+    "unmodified thymine",
+    "unmodified-thymine",
+    "unmodifiedthymine"
+   ]
+  },
+  {
+   "canonical_name": "Standard uracil",
+   "aliases": [
+    "standard U",
+    "standard-U",
+    "Standard-uracil",
+    "standardU",
+    "Standarduracil",
+    "U base",
+    "U-base",
+    "Ubase",
+    "unmodified uracil",
+    "unmodified-uracil",
+    "unmodifieduracil",
+    "uracil"
+   ]
+  },
+  {
+   "canonical_name": "Thymidine",
+   "aliases": []
+  },
+  {
+   "canonical_name": "Thymidine analogue",
+   "aliases": [
+    "Thymidine-analogue",
+    "Thymidineanalogue"
+   ]
+  },
+  {
+   "canonical_name": "Triazole-linked nucleic acid",
+   "aliases": [
+    "Triazole linked nucleic acid",
+    "Triazole-linked-nucleic-acid",
+    "Triazolelinkednucleicacid"
+   ]
+  },
+  {
+   "canonical_name": "Tricyclodeoxyribonucleic acid",
+   "aliases": [
+    "tcDNA",
+    "tricyclo DNA",
+    "tricyclo-DNA",
+    "Tricyclodeoxyribonucleic-acid",
+    "Tricyclodeoxyribonucleicacid",
+    "tricycloDNA"
+   ]
+  },
+  {
+   "canonical_name": "Trifluoromethylbenzene",
+   "aliases": []
+  },
+  {
+   "canonical_name": "UnLocked nucleic acid",
+   "aliases": [
+    "UNA",
+    "unlocked NA",
+    "unlocked-NA",
+    "UnLocked-nucleic-acid",
+    "unlockedNA",
+    "UnLockednucleicacid",
+    "unlocked nucleic acid"
+   ]
+  },
+  {
+   "canonical_name": "Wobble Base Pair",
+   "aliases": [
+    "wobble basepair",
+    "wobble pair",
+    "Wobble-Base-Pair",
+    "wobble-basepair",
+    "wobble-pair",
+    "WobbleBasePair",
+    "wobblepair"
+   ]
+  },
+  {
+   "canonical_name": "[1,1-Biphenyl]-3,5-dimethanol",
+   "aliases": [
+    "[1,1 Biphenyl] 3,5 dimethanol",
+    "[1,1Biphenyl]3,5dimethanol"
+   ]
+  },
+  {
+   "canonical_name": "[3-(hydroxymethyl)-5-naphthalen-1-ylphenyl]methanol",
+   "aliases": [
+    "[3 (hydroxymethyl) 5 naphthalen 1 ylphenyl]methanol",
+    "[3(hydroxymethyl)5naphthalen1ylphenyl]methanol"
+   ]
+  },
+  {
+   "canonical_name": "[3-(hydroxymethyl)-5-phenanthren-9-ylphenyl]methanol",
+   "aliases": [
+    "[3 (hydroxymethyl) 5 phenanthren 9 ylphenyl]methanol",
+    "[3(hydroxymethyl)5phenanthren9ylphenyl]methanol"
+   ]
+  },
+  {
+   "canonical_name": "[3-(hydroxymethyl)-5-pyren-1-ylphenyl]methanol",
+   "aliases": [
+    "[3 (hydroxymethyl) 5 pyren 1 ylphenyl]methanol",
+    "[3(hydroxymethyl)5pyren1ylphenyl]methanol"
+   ]
+  },
+  {
+   "canonical_name": "[3-(hydroxymethyl)phenyl]methanol",
+   "aliases": [
+    "[3 (hydroxymethyl)phenyl]methanol",
+    "[3(hydroxymethyl)phenyl]methanol"
+   ]
+  },
+  {
+   "canonical_name": "amide_linkage",
+   "aliases": [
+    "amide bond",
+    "Amide linkage",
+    "amide linker",
+    "amide-bond",
+    "Amide-linkage",
+    "amide-linker",
+    "amidebond",
+    "Amidelinkage",
+    "amidelinker"
+   ]
+  },
+  {
+   "canonical_name": "deoxynucleotide",
+   "aliases": []
+  }
+ ]
 }

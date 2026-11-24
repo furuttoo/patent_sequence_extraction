@@ -52,6 +52,35 @@ class ModificationExtraction:
     base_sequence: str
     groups: list[ModificationGroup]
     unresolved: list[UnresolvedChemistry]
+    case_convention: str = "unknown"   # 'ome' | 'rna' | 'unknown' | 'explicit'
+
+
+_CASE_OME = re.compile(r"(?:lower\s*case|lowercase|small\s+letters)[^.]{0,80}"
+                       r"(?:2'-o-?methyl|2'-ome|o-?methyl)", re.I)
+_CASE_RNA = re.compile(r"(?:lower\s*case|lowercase|small\s+letters)[^.]{0,80}"
+                       r"(?:ribonucleotide|\bRNA\b)", re.I)
+_CASE_DNA = re.compile(r"(?:upper\s*case|uppercase|capital\s+letters)[^.]{0,80}"
+                       r"(?:deoxyribonucleotide|\bDNA\b)", re.I)
+_OME_TYPES = {"2'-OMe", "2-O-Methyl"}
+
+
+def detect_case_convention(legend_text: Optional[str] = None,
+                           chemistry_types: Optional[Any] = None) -> str:
+    """Which meaning a lowercase base carries in this patent.
+
+    'ome'     lowercase = 2'-O-Methyl          (data: the chemistry list has 2'-OMe)
+    'rna'     lowercase = ribonucleotide       (legend says lower case = RNA/DNA split)
+    'unknown' nothing supports either reading; the caller must not guess
+    """
+    text = legend_text or ""
+    if _CASE_OME.search(text):
+        return "ome"
+    if _CASE_RNA.search(text) or _CASE_DNA.search(text):
+        return "rna"
+    types = {str(t) for t in (chemistry_types or ())}
+    if types & _OME_TYPES:
+        return "ome"
+    return "unknown"
 
 
 def _add(
@@ -102,11 +131,25 @@ def extract_modifications(
     *,
     abbrev_map: Optional[Mapping[str, str]] = None,
     resolutions: Optional[Mapping[str, str]] = None,
-    lowercase_means_ome: bool = True,
+    lowercase_means_ome: Optional[bool] = None,
     vocabulary: Optional[ChemistryVocabulary] = None,
+    legend_text: Optional[str] = None,
+    chemistry_types: Optional[Any] = None,
 ) -> ModificationExtraction:
-    """Decode common Alnylam-style notation without repairing source text."""
+    """Decode common Alnylam-style notation without repairing source text.
+
+    `lowercase_means_ome=None` asks the function to decide from the patent's own
+    legend: 'ome' and 'rna' are both attested conventions and guessing the wrong
+    one either invents chemistry or loses it. When nothing supports either
+    reading the result carries case_convention='unknown' and no OMe is emitted;
+    the caller is expected to flag the record.
+    """
     vocabulary = vocabulary or ChemistryVocabulary()
+    if lowercase_means_ome is None:
+        convention = detect_case_convention(legend_text, chemistry_types)
+        lowercase_means_ome = convention == "ome"
+    else:
+        convention = "explicit"
     abbrev_map = abbrev_map or {}
     resolutions = resolutions or {}
     grouped: dict[str, dict[str, Any]] = {}
@@ -255,7 +298,7 @@ def extract_modifications(
         )
         for canonical, details in grouped.items()
     ]
-    return ModificationExtraction("".join(bases), groups, unresolved)
+    return ModificationExtraction("".join(bases), groups, unresolved, convention)
 
 
 def load_resolution_map(path: str | Path | None) -> dict[str, str]:

@@ -12,12 +12,16 @@ and Tm-only extraction.
 4. Normalize known chemistry through
    `references/modification_vocabulary.json` and serialize groups as aligned
    ` * `-separated modification and position strings.
-5. Collect every unknown token as `UnresolvedChemistry`. Group unique raw terms
-   across the patent and reason over them once using the patent definition,
-   notation footnote, source row, and vocabulary.
-6. Write an auditable chemistry map containing `raw_name`, `canonical_name`,
-   resolution type, evidence, confidence, and `needs_review`. Rerun extraction
-   with that map. Never silently convert an unknown chemistry to `other` or `0`.
+5. A token that resolves to nothing is written as `other` with its
+   `raw_symbol` kept and `flagged=true`. It is never dropped, collapsed to `0`,
+   or guessed from the sequence.
+6. Unresolved chemistry is revisited in bulk, not per record: the redo pass
+   (`scripts/redo_step6_entries.py`) groups a patent's unresolved entries, sends
+   them together with that patent's legend, and merges every accepted verdict
+   back onto all measurement rows of the same `(sirna_id, strand)`. A rejected
+   verdict leaves the stored value untouched. `load_resolution_map()` is there
+   when a hand-curated `{raw_name: canonical_name}` map exists, but the pipeline
+   does not require one.
 
 The unmodified representation is `modification=0, position=0`. A core sequence
 may omit a two-nucleotide terminal overhang while the position data uses the

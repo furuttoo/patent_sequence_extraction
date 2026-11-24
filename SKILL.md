@@ -49,6 +49,7 @@ The launcher prepares OCR page JSON and seq_cache. EPO evidence is in output/act
 ## References
 - `references/sequence_listing_parsing_guide.md`: ST.25/ST.26 formats.
 - `references/modification_vocabulary.json`: canonical modification names and aliases; `canonical_name` must come from here.
+- `references/patent_layout_judgement.md`: the judgements no script can make — which table this is, continuation pages, id variants, activity attribution, OCR damage shapes. Read it when a table looks ambiguous.
 - `references/modification_decoding_reference.md` and `modification_extraction.md`: default conventions and the chemistry reconciliation contract; patent definitions take precedence.
 - `scripts/modification_extractor.py`: modification tokenization, position assignment, canonical naming and grouped serialization.
 - Tm-only requests retain the separate `references/tm_extraction.md` workflow.

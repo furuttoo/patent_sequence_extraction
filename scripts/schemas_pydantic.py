@@ -798,6 +798,27 @@ class SiRNARecord(BaseModel):
     def clean_target_gene(cls, value: Any) -> Optional[str]:
         return _clean_text(value)
 
+    @field_validator("sequence", mode="before")
+    @classmethod
+    def clean_sequence(cls, value: Any) -> Optional[str]:
+        """Bases only: A/C/G/T/U/N, no printed notation.
+
+        A strand's sequence is the nucleotide string; chemistry belongs in the
+        modifications groups and provenance in source_quote. Anything else
+        ('...bAb', 'GmsAmsCm', '(invAb)') is a transcription error that must be
+        repaired from the source rather than stored as a sequence.
+        """
+        text = _clean_text(value)
+        if text is None:
+            return None
+        text = re.sub(r"(?i)\(\s*(?:invab|iab|inverted\s*abasic)\s*\)\s*$", "", text)
+        text = re.sub(r"\s+", "", text).upper()
+        if not re.fullmatch(r"[ACGTUN]+", text):
+            raise ValueError(
+                "sequence must contain only A/C/G/T/U/N; put chemistry in "
+                "modifications and keep the printed form in source_quote")
+        return text
+
     # --- Provenance ---
     source_table: Optional[str] = Field(
         default=None,

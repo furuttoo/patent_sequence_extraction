@@ -991,7 +991,7 @@ class SiRNARecord(BaseModel):
 
     def to_csv_row(self) -> dict:
         """
-        Flatten to the 23-column CSV dict. This is the only flattening path.
+        Flatten to the 26-column CSV dict. This is the only flattening path.
         The column order here defines CSV_COLUMNS and the output column order.
         """
         act = self.activity or Activity()
@@ -1035,6 +1035,217 @@ class SiRNARecord(BaseModel):
 # ---------------------------------------------------------------------------
 # Writer
 # ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# Duplex output — the reference dataset layout (one row per compound)
+# ---------------------------------------------------------------------------
+
+DUPLEX_COLUMNS: list[str] = [
+    'ID', 'single_strand_flag', 'target_gene', 'patent_id', 'cell_line',
+    'sense_id', 'sense', 'anti_id', 'antisense',
+    'modification_sense', 'sense_position',
+    'modification_antisense', 'antisense_position',
+    'concentration', 'sense_length', 'antisense_length',
+    'unmapped_position', 'unmapped_modification', 'seed', 'knockdown',
+]
+
+_SEQUENCE_RE = re.compile(r'^[ACGTUN]+$')
+_VOCAB_NAMES: set[str] = set()
+
+
+def _vocabulary_names() -> set[str]:
+    global _VOCAB_NAMES
+    if _VOCAB_NAMES:
+        return _VOCAB_NAMES
+    path = Path(__file__).resolve().parents[1] / 'references' / 'modification_vocabulary.json'
+    try:
+        payload = json.loads(path.read_text())
+        _VOCAB_NAMES = {entry['canonical_name'] for entry in payload['chemistries']}
+    except Exception:
+        _VOCAB_NAMES = set()
+    return _VOCAB_NAMES
+
+
+class DuplexRow(BaseModel):
+    """One compound, sense and antisense side by side (reference dataset layout).
+
+    Modification names and positions stay as the aligned ' * ' strings the
+    dataset uses; a strand with no chemistry carries '0' in both columns.
+    """
+    model_config = {"extra": "forbid"}
+
+    ID: str
+    single_strand_flag: bool
+    target_gene: Optional[str] = None
+    patent_id: str
+    cell_line: Optional[str] = None
+    sense_id: Optional[str] = None
+    sense: Optional[str] = None
+    anti_id: Optional[str] = None
+    antisense: Optional[str] = None
+    modification_sense: str = '0'
+    sense_position: str = '0'
+    modification_antisense: str = '0'
+    antisense_position: str = '0'
+    concentration: Optional[str] = None
+    sense_length: Optional[int] = None
+    antisense_length: Optional[int] = None
+    unmapped_position: Optional[str] = None
+    unmapped_modification: Optional[str] = None
+    seed: Optional[str] = None
+    knockdown: Optional[float] = None
+
+    @field_validator('sense', 'antisense', mode='before')
+    @classmethod
+    def clean_sequence(cls, value):
+        if value is None:
+            return None
+        text = re.sub(r'\s+', '', str(value)).upper().replace('T', 'U')
+        if not text:
+            return None
+        if not _SEQUENCE_RE.match(text):
+            raise ValueError('sequence must contain only A/C/G/U/T/N')
+        return text
+
+    @field_validator('modification_sense', 'modification_antisense')
+    @classmethod
+    def clean_names(cls, value):
+        text = (value or '0').strip() or '0'
+        vocabulary = _vocabulary_names()
+        if vocabulary:
+            for name in text.split(' * '):
+                if name in ('0', ''):
+                    continue
+                if name not in vocabulary and name != 'other':
+                    raise ValueError(f'modification name not in vocabulary: {name}')
+        return text
+
+    @field_validator('sense_position', 'antisense_position')
+    @classmethod
+    def clean_positions(cls, value):
+        text = (value or '0').strip() or '0'
+        for group in text.split(' * '):
+            if group in ('0', ''):
+                continue
+            if not re.fullmatch(r'[1-9]\d*(,[1-9]\d*)*', group):
+                raise ValueError(f'positions must be comma-separated 1-based integers: {group}')
+        return text
+
+    @model_validator(mode='after')
+    def check_alignment(self) -> 'DuplexRow':
+        for names, positions, length in (
+            (self.modification_sense, self.sense_position, self.sense_length),
+            (self.modification_antisense, self.antisense_position, self.antisense_length),
+        ):
+            name_groups = 0 if names == '0' else len(names.split(' * '))
+            pos_groups = 0 if positions == '0' else len(positions.split(' * '))
+            if name_groups != pos_groups:
+                raise ValueError('modification groups and position groups must align')
+            # Positions are kept as printed: overhangs, conjugates and
+            # 5'-modifications legitimately fall outside the printed sequence,
+            # so a length comparison here would reject good rows. The group
+            # alignment above is the structural check that matters.
+        if self.sense_length is None and self.sense:
+            self.sense_length = len(self.sense)
+        if self.antisense_length is None and self.antisense:
+            self.antisense_length = len(self.antisense)
+        if self.seed is None and self.antisense and len(self.antisense) >= 8:
+            self.seed = self.antisense[1:8]
+        self.single_strand_flag = not (bool(self.sense) and bool(self.antisense))
+        return self
+
+    def to_csv_row(self) -> dict:
+        return {column: ('' if getattr(self, column) is None else getattr(self, column))
+                for column in DUPLEX_COLUMNS}
+
+
+def _clean_sequence(text):
+    """(clean bases, removed decoration) for a printed sequence.
+
+    Patents sometimes print a conjugate letter ('B' for biotin) or spaces
+    inside the sequence cell. The dataset columns hold bases only, so the
+    decoration is stripped and reported through unmapped_modification.
+    """
+    if not text:
+        return None, ''
+    raw = str(text).upper()
+    clean = re.sub(r'[^ACGTUN]', '', raw)
+    removed = sorted({ch for ch in raw if ch not in 'ACGTUN' and not ch.isspace()})
+    return (clean or None), ''.join(removed)
+
+
+def _strand_columns(record) -> tuple[str, str]:
+    groups = record.modifications
+    if not groups:
+        return '0', '0'
+    names = ' * '.join(group.canonical_name for group in groups)
+    positions = ' * '.join(','.join(str(p) for p in group.positions) for group in groups)
+    return names, positions
+
+
+def duplex_rows(records, patent_id: str, gene_resolver=None) -> list[DuplexRow]:
+    """Fold per-strand SiRNARecords into one DuplexRow per sirna_id."""
+    by_id: dict[str, dict] = {}
+    for record in records:
+        if not isinstance(record, SiRNARecord):
+            record = SiRNARecord.model_validate(record, context={'gene_resolver': gene_resolver})
+        slot = by_id.setdefault(record.sirna_id, {'sense': [], 'antisense': []})
+        if record.strand in slot:
+            slot[record.strand].append(record)
+    rows = []
+    for sirna_id, sides in by_id.items():
+        sense = next((r for r in sides['sense'] if r.modifications), sides['sense'][0] if sides['sense'] else None)
+        anti = next((r for r in sides['antisense'] if r.modifications),
+                    sides['antisense'][0] if sides['antisense'] else None)
+        activity = next(((r.activity) for side in ('sense', 'antisense') for r in sides[side]
+                         if r.activity and (r.activity.metric or r.activity.value)), None)
+        sense_names, sense_positions = _strand_columns(sense) if sense else ('0', '0')
+        anti_names, anti_positions = _strand_columns(anti) if anti else ('0', '0')
+        sense_clean, sense_removed = _clean_sequence(sense.sequence) if sense else (None, '')
+        anti_clean, anti_removed = _clean_sequence(anti.sequence) if anti else (None, '')
+        decoration = ''.join(sorted(set(sense_removed + anti_removed)))
+        knockdown = None
+        if activity and activity.value_numeric is not None:
+            if activity.metric == 'knockdown_percent':
+                knockdown = activity.value_numeric
+            elif activity.metric == 'mRNA_remaining_percent' and 0 <= activity.value_numeric <= 100:
+                # the dataset column is percent silenced; remaining% is its
+                # complement only because both are normalised to the control
+                knockdown = round(100 - activity.value_numeric, 4)
+        rows.append(DuplexRow(
+            ID=sirna_id,
+            single_strand_flag=not (sense and anti),
+            target_gene=(sense or anti).target_gene if (sense or anti) else None,
+            patent_id=patent_id,
+            cell_line=activity.cell_line if activity else None,
+            sense_id=f'{sirna_id}_sense' if sense else None,
+            sense=sense_clean,
+            anti_id=f'{sirna_id}_antisense' if anti else None,
+            antisense=anti_clean,
+            modification_sense=sense_names,
+            sense_position=sense_positions,
+            modification_antisense=anti_names,
+            antisense_position=anti_positions,
+            concentration=activity.concentration if activity else None,
+            sense_length=len(sense_clean) if sense_clean else None,
+            antisense_length=len(anti_clean) if anti_clean else None,
+            unmapped_modification=decoration or None,
+            knockdown=knockdown,
+        ))
+    return rows
+
+
+def write_duplex_csv(records, path: str | Path, patent_id: str, *, gene_resolver=None) -> None:
+    """Write the duplex layout; every row is validated before it is written."""
+    rows = duplex_rows(records, patent_id, gene_resolver=gene_resolver)
+    path = Path(path)
+    with path.open('w', newline='', encoding='utf-8') as handle:
+        writer = csv.DictWriter(handle, fieldnames=DUPLEX_COLUMNS)
+        writer.writeheader()
+        for row in rows:
+            writer.writerow(row.to_csv_row())
+    print(f'Wrote {len(rows)} duplex rows x {len(DUPLEX_COLUMNS)} columns -> {path}')
+
 
 def write_activity_csv(
     records: list[SiRNARecord | dict],

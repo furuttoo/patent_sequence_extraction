@@ -41,7 +41,7 @@ When a sequence listing is present, read it before the body tables: **3 â†’ 1 â†
 
    **Legend drag.** When a SEQ/ACTIVITY page uses a modifier symbol that is not in `abbrev_map`, search forward from that page for the next page whose `abbrev_footnotes` or `abbrev_tables` define it, add that page to the working set, update `abbrev_map`, and re-decode the affected records from their `source_quote`. Drag pages only for a missing legend definition.
 
-7. Export using schemas_pydantic.write_activity_csv (23 columns); record pending evidence separately. A written CSV is not certification of full coverage.
+7. Export one row per compound with schemas_pydantic.write_duplex_csv: sense and antisense side by side, modification names and positions as the aligned ` * ` strings, `0` when a strand carries no chemistry, and an empty cell when the patent only prints one strand. Columns follow the dataset layout through `knockdown`. Every row is validated by the DuplexRow model before it is written; record pending evidence separately. A written CSV is not certification of full coverage.
 
 ## Inputs
 The launcher prepares OCR page JSON and seq_cache. EPO evidence is in output/activity/epo_context.json, with original paragraph IDs/order and XML path. Read only matching table/example/ID context. EPO segment indexes are not PDF page numbers. Embedded images or absent table cells require the matching OCR/PDF; never invent missing values. The raw XML stays accessible. Use the supplied PDF renderer only if text cannot resolve the local evidence.

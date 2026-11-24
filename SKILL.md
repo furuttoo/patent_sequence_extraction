@@ -30,7 +30,7 @@ When a sequence listing is present, read it before the body tables: **3 â†’ 1 â†
    {"canonical_name": "2-O-Methyl",       "positions": [1, 2, 3], "raw_names": ["mU", "mG", "mG"]}
    ```
 
-   - `canonical_name` is one name from `references/modification_vocabulary.json`; that file is the only authority on spelling and aliases (161 canonical names, 1,014 aliases). Write `2-O-Methyl`, not `2'-OMe`; `2-F`, not `2'-Fluoro`.
+   - `canonical_name` is one name from `references/modification_vocabulary.json`; that file is the only authority on spelling and aliases (162 canonical names, 1,022 aliases). Write `2-O-Methyl`, not `2'-OMe`; `2-F`, not `2'-Fluoro`.
    - `positions` are 1-based within that strand, ascending, one entry per nucleotide the chemistry covers.
    - `raw_names` are the printed symbols, one per position in the same order, so the evidence survives even when the canonical name is `other`.
    - Resolve the name from the patent's own `abbrev_map` first, then from the defaults in `references/modification_decoding_reference.md`. If neither supports a name, use `other` and keep `raw_names`.

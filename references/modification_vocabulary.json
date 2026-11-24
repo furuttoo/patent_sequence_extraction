@@ -1800,6 +1800,17 @@
   {
    "canonical_name": "deoxynucleotide",
    "aliases": []
+  },
+  {
+   "canonical_name": "2'-Amino",
+   "aliases": [
+    "2'-NH2",
+    "2'-amino",
+    "2-NH2",
+    "2NH2",
+    "2-Amino",
+    "2 amino"
+   ]
   }
  ]
 }

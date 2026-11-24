@@ -100,7 +100,20 @@ like "a few rows with a header".
   and the bases behind a damaged cell. Both end in `flagged` / `needs_review`
   with the printed evidence in `source_quote`.
 
----
+## 8. Symbols the parser leaves to you  [AMBIG-N] [AMBIG-I] [AMBIG-T]
+
+The extractor decodes `m`/`f`/`s`/`*`/`d` and bracketed conjugates. Three symbols
+are deliberately not decided in code:
+
+- `[AMBIG-N]` `n` is read as the base N. In a printed sequence it usually means
+  "any nucleotide" at a degenerate position, not a real N. If `n` sits inside a
+  chemistry run, keep the record flagged and note it in `source_quote`.
+- `[AMBIG-I]` `I` never becomes chemistry by itself. If the legend defines it as
+  inosine, say so in `source_quote` and flag; do not map it to a sugar
+  modification.
+- `[AMBIG-T]` A `T` inside the sequence is a base; a `T` at a 3' overhang is
+  `2-Deoxythymidine`. The `dT` spelling is handled, the bare trailing `TT` is
+  not: judge it from the printed row and record the position explicitly.
 
 ## What is deliberately absent
 

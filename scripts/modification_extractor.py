@@ -240,8 +240,24 @@ def extract_modifications(
             prefix, base = prefixed.groups()
             bases.append(base.upper())
             position = len(bases)
-            record("2-O-Methyl" if prefix.lower() == "m" else "2-F", prefixed.group(0), position)
-            index += len(prefixed.group(0))
+            symbol = prefixed.group(0)
+            record("2-O-Methyl" if prefix.lower() == "m" else "2-F", symbol, position)
+            index += len(symbol)
+            # a prefixed base can still carry suffix marks: 'mA*', 'fC*', 'mAm'
+            while index < len(notation) and notation[index] in "mfbs*":
+                suffix = notation[index]
+                symbol += suffix
+                if suffix == "m":
+                    record("2-O-Methyl", symbol, position)
+                elif suffix == "f":
+                    record("2-F", symbol, position)
+                elif suffix in ("s", "*"):
+                    record("Phosphorothioate", symbol, position)
+                    index += 1
+                    break        # a linkage closes the residue; the next letter starts a new one
+                else:
+                    record(suffix, symbol, position)
+                index += 1
             continue
 
         if char.upper() in _BASES:
@@ -253,7 +269,7 @@ def extract_modifications(
                 record("2-O-Methyl", char, position)
 
             suffixes: list[str] = []
-            while index < len(notation) and notation[index] in "mfbs":
+            while index < len(notation) and notation[index] in "mfbs*":
                 suffixes.append(notation[index])
                 raw_symbol += notation[index]
                 index += 1
@@ -262,7 +278,8 @@ def extract_modifications(
                     record("2-O-Methyl", raw_symbol, position)
                 elif suffix == "f":
                     record("2-F", raw_symbol, position)
-                elif suffix == "s":
+                elif suffix in ("s", "*"):
+                    # '*' marks the linkage after this nucleotide, same as 's'
                     record("Phosphorothioate", raw_symbol, position)
                 else:
                     record(suffix, raw_symbol, position)

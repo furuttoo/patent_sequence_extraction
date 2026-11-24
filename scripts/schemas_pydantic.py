@@ -16,7 +16,7 @@ The agent should:
     3. Call write_activity_csv(records, path) to flatten and write the CSV.
        Never write the CSV directly — to_csv_row() is the only flattening path.
 
-Modification decoding rules: modification_decoding_reference.md
+Modification decoding rules: scripts/modification_extractor.py
 Patent-specific symbol→chemistry map: abbrev_map in the page cache
 """
 
@@ -469,7 +469,7 @@ class Modification(BaseModel):
     ] = Field(
         description=(
             "Decoded modification chemistry. Use abbrev_map first, then "
-            "modification_decoding_reference.md defaults. "
+            "scripts/modification_extractor.py defaults. "
             "Use 'other' only when the type cannot be determined."
         )
     )
@@ -879,7 +879,7 @@ class SiRNARecord(BaseModel):
             "one group per canonical_name with the 1-based positions it covers and the "
             "printed symbol at each position. canonical_name must be a name from "
             "references/modification_vocabulary.json (resolve with abbrev_map first, then "
-            "modification_decoding_reference.md). Flattened to a ' * '-joined string in "
+            "scripts/modification_extractor.py). Flattened to a ' * '-joined string in "
             "the CSV by to_csv_row()."
         )
     )

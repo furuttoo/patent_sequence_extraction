@@ -12,7 +12,7 @@ ST.25 lines look like:
     <400>
     gcuauguccg ucacguuga
 
-Important pitfalls handled (see references/alnylam_pct_anatomy.md P18):
+Important pitfall handled:
 - FastSEQ appends right-side line numbers to each sequence line. Strip them
   per line BEFORE joining. Patterns to handle:
     1. Pure-numeric lines (column markers like "1 5 10 15 20")

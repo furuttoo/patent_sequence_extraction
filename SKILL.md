@@ -33,7 +33,7 @@ When a sequence listing is present, read it before the body tables: **3 → 1 �
    - `canonical_name` is one name from `references/modification_vocabulary.json`; that file is the only authority on spelling and aliases (162 canonical names, 1,022 aliases). Write `2-O-Methyl`, not `2'-OMe`; `2-F`, not `2'-Fluoro`.
    - `positions` are 1-based within that strand, ascending, one entry per nucleotide the chemistry covers.
    - `raw_names` are the printed symbols, one per position in the same order, so the evidence survives even when the canonical name is `other`.
-   - Resolve the name from the patent's own `abbrev_map` first, then from the defaults in `references/modification_decoding_reference.md`. If neither supports a name, use `other` and keep `raw_names`.
+   - Resolve the name from the patent's own `abbrev_map` first, then from the defaults implemented in `scripts/modification_extractor.py`. If neither supports a name, use `other` and keep `raw_names`.
    - A strand with no chemistry has `modifications: []`. Do not emit bare base letters as modifications.
 
 5. Read measured activity even on pages that also contain sequences. Resolve IDs using explicit table/paragraph evidence. Save a separate record for each distinct measurement/condition. Percent knockdown and percent mRNA remaining are different metrics; a ratio becomes percent only when its normalization is explicit. Preserve precision, inequality/uncertainty in notes and raw evidence. Do not treat dose, assay instructions or control definitions as measured activity. Mixture activity belongs to the mixture, not automatically each component. Missing mappings are local pending items, not a reason to fail the patent. First commit one confirmed compound and measurement with final:false. Then continue incrementally; do not wait for other compounds or repeated source verification. Commit each finished table before the next.
@@ -50,6 +50,7 @@ The launcher prepares OCR page JSON and seq_cache. EPO evidence is in output/act
 - `references/sequence_listing_parsing_guide.md`: ST.25/ST.26 formats.
 - `references/modification_vocabulary.json`: canonical modification names and aliases; `canonical_name` must come from here.
 - `references/patent_layout_judgement.md`: the judgements no script can make — which table this is, continuation pages, id variants, activity attribution, OCR damage shapes. Read it when a table looks ambiguous.
-- `references/modification_decoding_reference.md` and `modification_extraction.md`: default conventions and the chemistry reconciliation contract; patent definitions take precedence.
+- `references/modification_extraction.md`: the chemistry reconciliation contract for chemistry that stays unresolved.
+- `scripts/modification_extractor.py`: the default symbol conventions (residue prefixes/suffixes, linkage marks, bracketed conjugates); patent definitions still win.
 - `scripts/modification_extractor.py`: modification tokenization, position assignment, canonical naming and grouped serialization.
 - Tm-only requests retain the separate `references/tm_extraction.md` workflow.
